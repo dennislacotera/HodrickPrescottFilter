@@ -1,0 +1,10 @@
+HodrickPrescottFilter[s_, l_] := Module[{v, s1, s2},
+  v[e_] := Switch[e, -4, 1, -3, -4, -2, 6, -1, -4, 0, 1, _, 0];
+  s1 = Length[s];
+  s2 = Join[
+    PadRight[{{1, -2, 1}, {-2, 5, -4, 1}}, {2, s1}], 
+    Table[v[i - j], {i, s1 - 4}, {j, s1}], 
+    PadLeft[{{1, -4, 5, -2}, {1, -2, 1}}, {2, s1}]
+    ];
+  Inverse[IdentityMatrix[s1] + l*s2].s
+  ]
